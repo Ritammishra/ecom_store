@@ -3,8 +3,6 @@ import img from '../assets/wave-haikei.png'
 
 export default function Hero(){
 
-
-
     return(
         <>
             <section class="text-white body-font bg-bottom bg-no-repeat  bg-cover" style={{backgroundImage: `url(${img})`}}>
