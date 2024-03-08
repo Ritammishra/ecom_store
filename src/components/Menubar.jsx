@@ -33,7 +33,6 @@ export default function Menu() {
                     </nav>
                 </div>
             </header>
-            {isCartOpen && <Cart/>}
         </>
     )
 }
