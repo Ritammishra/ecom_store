@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Menubar from './Menubar'
+import productsDetailsContext from "./productDeatilscontext";
+import Cart from "./Cart";
 
 export default function Heroproducts() {
     const [products, setProducts] = useState([]);
@@ -8,13 +9,14 @@ export default function Heroproducts() {
     const [searchTerm, setSearchTerm] = useState("")
     const [selectedItems, setSelectedItems] = useState([]);
 
+    console.log("Home",selectedItems);
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
             .then((res) => {
                 const tenitem = res.data.slice(0, elements);
                 setProducts(tenitem)
             })
-    }, [products])
+    }, [])
 
     const loadmore = () => {
         setElements(elements + elements)
@@ -61,7 +63,9 @@ export default function Heroproducts() {
                 </div>
                 <button onClick={loadmore} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Load More</button>
             </div>
-
+            <productsDetailsContext.Provider value={{selectedItems : selectedItems}}>
+                <Cart/>
+            </productsDetailsContext.Provider>
         </>
     )
 }
